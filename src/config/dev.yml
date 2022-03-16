@@ -7,14 +7,16 @@ app:
     dir: 'logs'
 
 # 数据库配置
-db:
-  mysql:
+database:
     host: '127.0.0.1'
+    type: 'mysql'
     username: 'kamtao'
     password: 'tao19981117'
-    database: 'lc'
+    database: 'geek'
     port: 3306
     charser: 'utf8mb4'
+    synchronize: true
+    autoLoadEntities: true
 
 # jwt 配置
 jwt:

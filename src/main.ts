@@ -3,11 +3,16 @@ import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
+import { LoggingInterceptor } from './common/interceptor/logging.interceptor';
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   const port = configService.get('app.port');
   const env = configService.get('env');
+
+  // 全局拦截器;
+  app.useGlobalInterceptors(new LoggingInterceptor());
 
   // 配置文档
   const options = new DocumentBuilder()
